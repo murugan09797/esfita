@@ -5,7 +5,7 @@ const validate = (fieldName, value, value2) => {
   let validData;
   switch (fieldName) {
     case "name":
-    case "auth":
+    case "authorizesSignature":
     case "address1":
     case "address2":
     case "website":
@@ -19,7 +19,7 @@ const validate = (fieldName, value, value2) => {
       return validData;
 
     case "email":
-    case "emailId":
+    case "emailid":
       valid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/);
       error = valid ? "" : "Please enter valid email address.";
       validData = {
@@ -40,18 +40,17 @@ const validate = (fieldName, value, value2) => {
     case "mobile":
     case "mobileNo":
       valid =
-        parseInt(value) !== NaN &&
-        value.length >= 10 &&
+      isNaN(value) == false &&
+        value.length == 10 &&
         !value.match(/^[6-9]\d{9}$/);
-      console.log(valid);
-      error = valid ? "" : " Please enter valid number";
+       error = valid ? "" : " Please enter valid number";
       validData = {
         valid,
         error,
       };
       return validData;
     case "pincode":
-      valid = parseInt(value) !== NaN && value.length >= 3 && value.length <= 6;
+      valid = isNaN(value)  == false && value.length >= 3 && value.length <= 6;
       error = valid ? "" : " Please enter valid pincode";
       validData = {
         valid,
@@ -59,7 +58,7 @@ const validate = (fieldName, value, value2) => {
       };
       return validData;
     case "registration":
-      valid = parseInt(value) !== NaN && value.length >= 3 && value.length <= 6;
+      valid = isNaN(value)  == false && value.length >= 3 && value.length <= 6;
       error = valid ? "" : " Please enter valid Register Number";
       validData = {
         valid,
