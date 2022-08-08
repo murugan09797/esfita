@@ -1,8 +1,7 @@
 import { React, useState } from "react";
 import {
   TextField,
-  Button,
-  MenuItem,
+   MenuItem,
   Select,
   FormControl,
   InputLabel,
@@ -20,6 +19,7 @@ import validate from "./Validation";
 import State from "./State";
 import { toast } from "react-toastify";
 import { makeStyles } from "@material-ui/core/styles";
+import Footer from "./Footer";
 
 const useStyles = makeStyles({
   input: {
@@ -65,10 +65,10 @@ function UserDetails() {
 
   const [singnatory, setSignatory] = useState([
     {
-      authorizesSignature: "",
-      emailid: "",
       Designation: "",
+      emailid: "",
       mobileNo: "",
+      authorizesSignature: "", 
     },
   ]);
 
@@ -87,10 +87,10 @@ function UserDetails() {
     let li = [
       ...singnatory,
       {
-        authorizesSignature: "",
-        emailid: "",
         Designation: "",
+        emailid: "",
         mobileNo: "",
+        authorizesSignature: "", 
       },
     ];
     setSignatory(li);
@@ -234,27 +234,6 @@ function UserDetails() {
               />
             </FormControl>
             <FormControl sx={{ m: 1, width: 300 }}>
-              <InputLabel id="demo-multiple-name-label">State</InputLabel>
-              <Select
-                labelId="demo-multiple-name-label"
-                id="demo-multiple-name"
-                onChange={handleChange}
-                name="state"
-                autoComplete="off" 
-                // helperText={state.stateError} 
-                error={state.stateError !== ""}
-                value={state.state}
-                required
-                input={<OutlinedInput label="Name" />}
-              >
-                {State.flat(Infinity).map((name, i) => (
-                  <MenuItem key={i} value={name.state} >
-                    {name.state}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <FormControl sx={{ m: 1, width: 300 }}>
               <InputLabel id="demo-multiple-name-label">City</InputLabel>
               <Select
                 labelId="demo-multiple-name-label"
@@ -275,6 +254,28 @@ function UserDetails() {
                 ))}
               </Select>
             </FormControl>
+            <FormControl sx={{ m: 1, width: 300 }}>
+              <InputLabel id="demo-multiple-name-label">State</InputLabel>
+              <Select
+                labelId="demo-multiple-name-label"
+                id="demo-multiple-name"
+                onChange={handleChange}
+                name="state"
+                autoComplete="off" 
+                // helperText={state.stateError} 
+                error={state.stateError !== ""}
+                value={state.state}
+                required
+                input={<OutlinedInput label="Name" />}
+              >
+                {State.flat(Infinity).map((name, i) => (
+                  <MenuItem key={i} value={name.state} >
+                    {name.state}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+           
           </div>
           <div>
             <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
@@ -366,7 +367,6 @@ function UserDetails() {
                       {singnatory.length - 1 === i && (
                         <AddCircleIcon style={{ color:"red" }} onClick={handleAdd} />
                       )}
-
                       {singnatory.length !== 1 && (
                         <RemoveCircleIcon style={{ color:"red" }}
                           onClick={() => handleRemove(i)}
@@ -387,7 +387,8 @@ function UserDetails() {
         </CardContent>
       </Card>
       </div>
-     
+      <Footer />
+   
     </>
   );
 }

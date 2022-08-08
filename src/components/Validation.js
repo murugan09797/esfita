@@ -41,8 +41,7 @@ const validate = (fieldName, value, value2) => {
     case "mobileNo":
       valid =
       isNaN(value) == false &&
-        value.length == 10 &&
-        !value.match(/^[6-9]\d{9}$/);
+        value.length == 10  
        error = valid ? "" : " Please enter valid number";
       validData = {
         valid,
